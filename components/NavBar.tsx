@@ -11,7 +11,7 @@ const Navbar = () => {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-gray-100 backdrop-blur-md border-b border-primary py-3 shadow-lg">
-            <div className="container flex items-center justify-between mx-auto px-4">
+            <div className="container flex items-center justify-between mx-auto">
                 <div className="flex items-center justify-between w-full md:w-auto">
                     <Link href="/" className="flex items-center gap-2">
                         <div className="p-1 bg-primary/30 rounded">
@@ -35,25 +35,29 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center gap-6">
                     <Link
                         href="/"
-                        className="flex items-center gap-1.5 text-md hover:text-primary transition-colors font-mono"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
                     >
-                        <HomeIcon size={22} />
                         <span>Home</span>
                     </Link>
 
                     <Link
                         href="/generate-program"
-                        className="flex items-center gap-1.5 text-md hover:text-primary transition-colors font-mono"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
                     >
-                        <DumbbellIcon size={22} />
-                        <span>Generate</span>
+                        <span>History</span>
                     </Link>
 
                     <Link
                         href="/profile"
-                        className="flex items-center gap-1.5 text-md hover:text-primary transition-colors font-mono"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
                     >
-                        <UserIcon size={22} />
+                        <span>Pricing</span>
+                    </Link>
+
+                    <Link
+                        href="/profile"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
+                    >
                         <span>Profile</span>
                     </Link>
                 </div>
