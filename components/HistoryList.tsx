@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import  Image from 'next/image';
 import { Button } from './ui/button';
 import { CirclePlus } from 'lucide-react';
+import AddNewSessionDialog from './AddNewSessionDialog';
 
 const HistoryList = () => {
     const [historyList, setHistoryList] = useState([]);
@@ -19,7 +20,7 @@ const HistoryList = () => {
                     />
                     <h2 className="font-bold text-2xl mt-3">No Recent Consultaions</h2>
                     <p className='mt-1'>It looks like you haven't consulted with any doctors yet.</p>
-                    <Button className='mt-5 hover:w-50 hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
+                    <AddNewSessionDialog />
                 </div>
                 : 
                 <div>

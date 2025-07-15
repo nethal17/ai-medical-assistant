@@ -1,3 +1,4 @@
+import DoctorsAgentList from '@/components/DoctorsAgentList';
 import HistoryList from '@/components/HistoryList';
 import Navbar from '@/components/NavBar';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,7 @@ const page = () => {
         </div>
       </div>
       <HistoryList />
+      <DoctorsAgentList />
     </main>
     </>
     
