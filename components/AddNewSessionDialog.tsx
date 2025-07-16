@@ -35,7 +35,21 @@ const AddNewSessionDialog = () => {
     console.log(result.data);
     setSuggestedDoctors(result.data);
     setLoading(false);
-  }
+  };
+
+  const onStartConsultation = async () => {
+    setLoading(true);
+    const result = await axios.post('/api/session-chat', {
+      notes: note,
+      selectedDoctor: selectedDoctor
+    });
+    console.log(result.data);
+    if (result.data?.sessionId)
+    {
+      console.log(result.data.sessionId);
+    }
+    setLoading(false);
+  };
 
   return (
     <Dialog>
@@ -44,7 +58,11 @@ const AddNewSessionDialog = () => {
         </DialogTrigger>
         <DialogContent>
             <DialogHeader>
+              {!suggestedDoctors ?
                 <DialogTitle>Add Basic Details</DialogTitle>
+                :
+                <DialogTitle></DialogTitle>
+              }  
                 <DialogDescription asChild>
                 {!suggestedDoctors ?  
                   <div>
@@ -55,12 +73,20 @@ const AddNewSessionDialog = () => {
                       onChange={(e) => setNote(e.target.value)}
                     />
                   </div> 
-                  : 
-                  <div className='grid grid-cols-3 gap-5'>
-                    {suggestedDoctors.map((doctor, index) => (
-                        <SuggestedDoctorCard doctor={doctor} key={index} />
-                    ))}
-                  </div>
+                  :
+                  <div>
+                    <h2 className='text-lg text-gray-500'>Select the doctor</h2>
+                    <div className='grid grid-cols-3 gap-5'>
+                      {suggestedDoctors.map((doctor, index) => (
+                        <SuggestedDoctorCard doctor={doctor} key={index} 
+                          setSelectedDoctor={() => setSelectedDoctor(doctor)}
+                          //@ts-ignore 
+                          selectedDoctor={selectedDoctor}
+                        />
+                      ))}
+                    </div>
+                  </div> 
+                  
                 }
                 </DialogDescription>
             </DialogHeader>
@@ -73,7 +99,9 @@ const AddNewSessionDialog = () => {
                 Next {loading ? <Loader2 className='animate-spin'/> : <ArrowRight/>}
               </Button>
               :
-              <Button className='hover:cursor-pointer'>Start Consultation</Button>
+              <Button disabled={loading} className='hover:cursor-pointer' onClick={() => onStartConsultation()}>
+                Start Consultation {loading && <Loader2 className='animate-spin'/> }
+              </Button>
               }
             </DialogFooter>
         </DialogContent>

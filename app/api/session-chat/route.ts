@@ -9,6 +9,7 @@ export async function POST(req:NextRequest){
     const {notes,selectedDoctor} = await req.json();
     console.log(selectedDoctor);
     const user = await currentUser();
+    
     try{
         const sessionId = uuidv4();
         const result = await db.insert(SessionChatTable).values({
@@ -17,7 +18,7 @@ export async function POST(req:NextRequest){
             notes:notes,
             selectedDoctor:selectedDoctor,
             createdOn:(new Date()).toString(),
-// @ts-ignore
+         // @ts-ignore
         }).returning({SessionChatTable})
         return NextResponse.json(result[0]?.SessionChatTable);
     }

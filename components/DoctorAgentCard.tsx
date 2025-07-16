@@ -27,7 +27,7 @@ const DoctorAgentCard = ({doctor}: props) => {
         />
         <h2 className='font-bold mt-1'>{doctor.specialist}</h2>
         <p className='line-clamp-2 text-sm text-gray-500 mt-1'>{doctor.description}</p>
-        <Button className='w-full mt-3 hover:cursor-pointer'>Start Consultation <ArrowRight/></Button>
+        <Button className='w-full mt-3 hover:cursor-pointer hover:bg-white hover:text-black border border-black'>Start Consultation <ArrowRight/></Button>
     </div>
   )
 };

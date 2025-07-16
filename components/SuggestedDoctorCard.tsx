@@ -1,21 +1,20 @@
 import React from 'react';
 import Image from 'next/image';
-
-export type doctorAgent = {
-    id: number,
-    specialist: string,
-    description: string,
-    image: string,
-    agentPrompt: string
-}
+import { doctorAgent } from './DoctorAgentCard';
 
 type props = {
     doctor: doctorAgent;
+    setSelectedDoctor: any;
+    selectedDoctor: doctorAgent;
 }
 
-const SuggestedDoctorCard = ({doctor}: props) => {
+const SuggestedDoctorCard = ({doctor, setSelectedDoctor, selectedDoctor}: props) => {
   return (
-    <div className='flex flex-col items-center justify-between border rounded-2xl shadow p-2 h-40 mt-4 mb-4'>
+    <div
+      className={`flex flex-col items-center border rounded-2xl shadow p-5 hover:shadow-xl cursor-pointer mt-4 mb-2
+      ${selectedDoctor?.id === doctor.id ? "border-blue-700 hover:border-blue-700" : ""}`}
+      onClick={() => setSelectedDoctor(doctor)}
+    >
         <Image
             src={doctor.image}
             alt={doctor.specialist} 
