@@ -1,3 +1,4 @@
+import AddNewSessionDialog from '@/components/AddNewSessionDialog';
 import DoctorsAgentList from '@/components/DoctorsAgentList';
 import HistoryList from '@/components/HistoryList';
 import Navbar from '@/components/NavBar';
@@ -5,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { CirclePlus } from 'lucide-react';
 import React from 'react';
 
-const page = () => {
+const DashboardPage = () => {
   return (
     <>
     <Navbar />
@@ -15,9 +16,7 @@ const page = () => {
           <h2 className="font-bold text-2xl">My Dashboard</h2>
         </div>
         <div>
-          <Button className="flex items-center justify-between">
-            Consult with doctor
-          </Button>
+          <AddNewSessionDialog />
         </div>
       </div>
       <HistoryList />
@@ -28,4 +27,4 @@ const page = () => {
   )
 };
 
-export default page;
+export default DashboardPage;

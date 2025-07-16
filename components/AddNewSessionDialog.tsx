@@ -1,30 +1,81 @@
-import React from 'react'
+"use client";
+
+import React, { useState } from 'react'
 import {
     Dialog,
     DialogContent,
     DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { Button } from './ui/button';
-import { CirclePlus } from 'lucide-react';
+import { ArrowRight, CirclePlus, Loader2 } from 'lucide-react';
+import { Textarea } from './ui/textarea';
+import { DialogClose } from '@radix-ui/react-dialog';
+import DoctorAgentCard, { doctorAgent } from './DoctorAgentCard';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import SuggestedDoctorCard from './SuggestedDoctorCard';
 
 const AddNewSessionDialog = () => {
+  const [note, setNote] = useState <string> ();
+  const [loading, setLoading] = useState(false);
+  const [suggestedDoctors, setSuggestedDoctors] = useState <doctorAgent[]>();
+  const [selectedDoctor, setSelectedDoctor] = useState <doctorAgent>();
+  const router = useRouter();
+
+  const onClickNext = async () => {
+    setLoading(true);
+    const result = await axios.post('/api/suggest-doctors', {
+      notes: note
+    })
+
+    console.log(result.data);
+    setSuggestedDoctors(result.data);
+    setLoading(false);
+  }
+
   return (
     <Dialog>
         <DialogTrigger>
-            <Button className='mt-5 hover:w-50 hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
+            <Button className='mt-5 hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
         </DialogTrigger>
-        
         <DialogContent>
             <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                <DialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
+                <DialogTitle>Add Basic Details</DialogTitle>
+                <DialogDescription asChild>
+                {!suggestedDoctors ?  
+                  <div>
+                    <h2 className='mt-2'>Add Symptons or Any Other Details</h2>
+                    <Textarea 
+                      placeholder='Add details here...' 
+                      className='h-[200px] mt-1'
+                      onChange={(e) => setNote(e.target.value)}
+                    />
+                  </div> 
+                  : 
+                  <div className='grid grid-cols-3 gap-5'>
+                    {suggestedDoctors.map((doctor, index) => (
+                        <SuggestedDoctorCard doctor={doctor} key={index} />
+                    ))}
+                  </div>
+                }
                 </DialogDescription>
             </DialogHeader>
+            <DialogFooter>
+              <DialogClose>
+                <Button variant={'outline'} className='hover:cursor-pointer'>Cancel</Button>
+              </DialogClose>
+              {!suggestedDoctors ?
+              <Button disabled={!note || loading} onClick={onClickNext} className='hover:cursor-pointer'>
+                Next {loading ? <Loader2 className='animate-spin'/> : <ArrowRight/>}
+              </Button>
+              :
+              <Button className='hover:cursor-pointer'>Start Consultation</Button>
+              }
+            </DialogFooter>
         </DialogContent>
     </Dialog>
   )
