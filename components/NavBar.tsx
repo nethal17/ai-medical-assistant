@@ -71,7 +71,7 @@ const Navbar = () => {
                                 variant="outline"
                                 className="ml-2 border-primary hover:text-primary text-white bg-primary hover:bg-white"
                             >
-                                <Link href="/generate-program">Get Started</Link>
+                                <Link href="/dashboard">Get Started</Link>
                             </Button>
                             
                             <UserButton/>
@@ -137,7 +137,7 @@ const Navbar = () => {
                                         className="border-primary hover:text-primary text-white bg-primary hover:bg-white"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
-                                        <Link href="/generate-program">Get Started</Link>
+                                        <Link href="/dashboard">Get Started</Link>
                                     </Button>
                                     <div className="flex justify-center">
                                         <UserButton />
