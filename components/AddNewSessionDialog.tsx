@@ -44,9 +44,9 @@ const AddNewSessionDialog = () => {
       selectedDoctor: selectedDoctor
     });
     console.log(result.data);
-    if (result.data?.sessionId)
-    {
+    if (result.data?.sessionId) {
       console.log(result.data.sessionId);
+      router.push('/dashboard/medical-agent/' + result.data.sessionId);
     }
     setLoading(false);
   };

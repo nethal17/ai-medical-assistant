@@ -5,13 +5,10 @@ import React from 'react';
 
 const page = () => {
   return (
-    <>
-    <Navbar />
     <main>
       <HeroSection />
       <GridSection />
     </main>
-    </>
   )
 };
 

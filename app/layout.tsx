@@ -40,10 +40,12 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <Provider>
-            <>
+            <div className="min-h-screen">
               <Navbar />
+              <div className="px-20 py-24">
               {children}
-            </>
+              </div>
+            </div>  
           </Provider>
         </body>
       </html>

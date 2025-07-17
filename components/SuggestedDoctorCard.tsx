@@ -22,8 +22,8 @@ const SuggestedDoctorCard = ({doctor, setSelectedDoctor, selectedDoctor}: props)
             height={70}
             className='w-[50px] h-[50px] rounded-4xl object-cover'
         />
-        <h2 className='font-bold  text-sm text-center text-gray-800'>{doctor.specialist}</h2>
-        <p className='line-clamp-2 text-xs text-center'>{doctor.description}</p>
+        <h2 className='font-bold  text-sm text-center text-gray-800'>{doctor?.specialist}</h2>
+        <p className='line-clamp-2 text-xs text-center'>{doctor?.description}</p>
     </div>
   )
 };
