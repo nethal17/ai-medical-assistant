@@ -12,6 +12,7 @@ import {
   UserButton,
 } from '@clerk/nextjs';
 import Navbar from "@/components/NavBar";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
               <Navbar />
               <div className="px-20 py-24">
               {children}
+              <Toaster />
               </div>
             </div>  
           </Provider>

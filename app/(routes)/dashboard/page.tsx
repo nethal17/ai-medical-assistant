@@ -13,7 +13,7 @@ const DashboardPage = () => {
     <main>
       <div className="flex items-center justify-between px-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-bold text-2xl">My Dashboard</h2>
+          <h2 className="ml-[-15px] font-bold text-2xl">My Dashboard</h2>
         </div>
         <div>
           <AddNewSessionDialog />

@@ -37,7 +37,8 @@ export async function GET(req:NextRequest){
     if(sessionId=='all'){
          const result = await db.select().from(SessionChatTable)
         // @ts-ignore
-        .where(eq(SessionChatTable.createdBy, user?.primaryEmailAddress?.emailAddress)).orderBy(desc(SessionChatTable.id));
+        .where(eq(SessionChatTable.createdBy, user?.primaryEmailAddress?.emailAddress))
+        .orderBy(desc(SessionChatTable.id));
 
         return NextResponse.json(result);
     }
