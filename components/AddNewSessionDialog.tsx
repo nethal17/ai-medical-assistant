@@ -14,17 +14,25 @@ import { Button } from './ui/button';
 import { ArrowRight, CirclePlus, Loader2 } from 'lucide-react';
 import { Textarea } from './ui/textarea';
 import { DialogClose } from '@radix-ui/react-dialog';
-import DoctorAgentCard, { doctorAgent } from './DoctorAgentCard';
+import { doctorAgent } from './DoctorAgentCard';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import SuggestedDoctorCard from './SuggestedDoctorCard';
+import { useAuth } from '@clerk/nextjs';
+import { sessionDetail } from '@/app/(routes)/dashboard/medical-agent/[sessionId]/page';
+import { useEffect } from 'react';
 
 const AddNewSessionDialog = () => {
   const [note, setNote] = useState <string> ();
   const [loading, setLoading] = useState(false);
   const [suggestedDoctors, setSuggestedDoctors] = useState <doctorAgent[]>();
   const [selectedDoctor, setSelectedDoctor] = useState <doctorAgent>();
+  const [historyList, setHistoryList] = useState<sessionDetail[]>([]);
   const router = useRouter();
+
+  useEffect(() => {
+    getHistoryList();
+  }, []);
 
   const onClickNext = async () => {
     setLoading(true);
@@ -51,11 +59,25 @@ const AddNewSessionDialog = () => {
     setLoading(false);
   };
 
+  const { has } = useAuth();
+  // @ts-ignore
+  const paidUser = has && has({ plan: 'pro' });
+
+  const getHistoryList = async () => {
+    const result = await axios.get('/api/session-chat?sessionId=all');
+    console.log(result.data);
+    setHistoryList(result.data);
+  };  
+
   return (
     <Dialog>
+        {!paidUser && historyList?.length >= 1? 
+          <Button className='mt-5 mr-[-15px] hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
+          : 
         <DialogTrigger>
-            <Button className='mt-5 hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
+          <Button className='mt-5 mr-[-15px] hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
         </DialogTrigger>
+        }
         <DialogContent>
             <DialogHeader>
               {!suggestedDoctors ?

@@ -41,14 +41,14 @@ const Navbar = () => {
                     </Link>
 
                     <Link
-                        href="/generate-program"
+                        href="/dashboard/history"
                         className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
                     >
                         <span>History</span>
                     </Link>
 
                     <Link
-                        href="/profile"
+                        href="/dashboard/billing"
                         className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
                     >
                         <span>Pricing</span>

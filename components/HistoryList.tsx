@@ -1,13 +1,26 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import  Image from 'next/image';
 import { Button } from './ui/button';
 import { CirclePlus } from 'lucide-react';
 import AddNewSessionDialog from './AddNewSessionDialog';
+import axios from 'axios';
+import HistoryTable from './HistoryTable';
+import { sessionDetail } from '@/app/(routes)/dashboard/medical-agent/[sessionId]/page';
 
 const HistoryList = () => {
-    const [historyList, setHistoryList] = useState([]);
+    const [historyList, setHistoryList] = useState<sessionDetail[]>([]);
+
+    useEffect(() => {
+        getHistoryList();
+    }, []);
+
+    const getHistoryList = async () => {
+        const result = await axios.get('/api/session-chat?sessionId=all');
+        console.log(result.data);
+        setHistoryList(result.data);
+    };
 
     return (
         <div className='mt-10'>
@@ -24,7 +37,7 @@ const HistoryList = () => {
                 </div>
                 : 
                 <div>
-                    List
+                    <HistoryTable historyList={historyList} />
                 </div>
 
             }
