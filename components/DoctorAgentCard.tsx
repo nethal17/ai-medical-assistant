@@ -47,7 +47,7 @@ const DoctorAgentCard = ({doctor}: props) => {
 
   return (
     <div className='relative'>
-        {doctor.subscriptionRequired && <Badge className='absolute m-2 right-0 text-sm bg-primary/70'>
+        {doctor.subscriptionRequired && <Badge className='absolute m-2 right-0 text-sm bg-red-600/60'>
           Premium
         </Badge> }
         <Image
@@ -57,9 +57,9 @@ const DoctorAgentCard = ({doctor}: props) => {
             height={300}
             className='w-full h-[250px] object-cover rounded-xl' 
         />
-        <h2 className='font-bold mt-1'>{doctor.specialist}</h2>
+        <h2 className='font-bold mt-1 text-green-700'>{doctor.specialist}</h2>
         <p className='line-clamp-2 text-sm text-gray-500 mt-1'>{doctor.description}</p>
-        <Button onClick={onStartConsultation} disabled={!paidUser && doctor.subscriptionRequired} className='w-full mt-3 hover:cursor-pointer hover:bg-white hover:text-black border border-black'>Start Consultation {loading ? <Loader2 className='animate-spin'/> : <ArrowRight/>}</Button>
+        <Button onClick={onStartConsultation} disabled={!paidUser && doctor.subscriptionRequired} className='w-full mt-3 cursor-pointer hover:bg-green-800 hover:text-white bg-green-700 text-white hover:-translate-y-1'>Start Consultation {loading ? <Loader2 className='animate-spin'/> : <ArrowRight/>}</Button>
     </div>
   )
 };

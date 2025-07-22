@@ -21,6 +21,7 @@ import SuggestedDoctorCard from './SuggestedDoctorCard';
 import { useAuth } from '@clerk/nextjs';
 import { sessionDetail } from '@/app/(routes)/dashboard/medical-agent/[sessionId]/page';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 const AddNewSessionDialog = () => {
   const [note, setNote] = useState <string> ();
@@ -67,15 +68,19 @@ const AddNewSessionDialog = () => {
     const result = await axios.get('/api/session-chat?sessionId=all');
     console.log(result.data);
     setHistoryList(result.data);
-  };  
+  };
+  
+  const handleMonthlyLimit = () => {
+    toast.error("Your monthly limit has been reached. Please upgrade to continue.");
+  };
 
   return (
     <Dialog>
         {!paidUser && historyList?.length >= 1? 
-          <Button className='mt-5 mr-[-15px] hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
+          <Button className='mt-5 mr-[-15px] cursor-pointer bg-green-700 hover:bg-green-800' onClick={handleMonthlyLimit}> <CirclePlus/> Start a Consultation </Button>
           : 
         <DialogTrigger>
-          <Button className='mt-5 mr-[-15px] hover:cursor-pointer'> <CirclePlus/> Start a Consultation </Button>
+          <Button className='mt-5 mr-[-15px] cursor-pointer bg-green-700 hover:bg-green-800'> <CirclePlus/> Start a Consultation </Button>
         </DialogTrigger>
         }
         <DialogContent>
@@ -121,7 +126,7 @@ const AddNewSessionDialog = () => {
                 Next {loading ? <Loader2 className='animate-spin'/> : <ArrowRight/>}
               </Button>
               :
-              <Button disabled={loading} className='hover:cursor-pointer' onClick={() => onStartConsultation()}>
+              <Button disabled={loading} className='cursor-pointer' onClick={() => onStartConsultation()}>
                 Start Consultation {loading && <Loader2 className='animate-spin'/> }
               </Button>
               }
