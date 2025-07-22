@@ -22,7 +22,7 @@ const Provider = ({
 
   useEffect(() => {
     user&&createNewUser();
-  }, [user])
+  }, [user]);
 
   const createNewUser = async () => {
     const result = await axios.post('api/users');

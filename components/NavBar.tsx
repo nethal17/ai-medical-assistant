@@ -1,24 +1,25 @@
 "use client";
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { DumbbellIcon, HomeIcon, UserIcon, ZapIcon, MenuIcon, XIcon } from "lucide-react";
+import { DumbbellIcon, HomeIcon, UserIcon, HeartHandshake, MenuIcon, XIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
     const { isSignedIn } = useUser();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-gray-100 backdrop-blur-md border-b border-primary py-3 shadow-lg">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-md border-b border-white py-4 shadow-md">
             <div className="container flex items-center justify-between mx-auto">
                 <div className="flex items-center justify-between w-full md:w-auto">
-                    <Link href="/" className="flex items-center gap-2">
-                        <div className="p-1 bg-primary/30 rounded">
-                            <ZapIcon className="w-5 h-5 text-primary animate-pulse" />
+                    <Link href="/" className="flex items-center gap-1">
+                        <div className=" bg-white rounded">
+                            <HeartHandshake className="w-7 h-7 text-green-700" />
                         </div>
-                        <span className="text-xl font-bold font-mono">
-                            pulse<span className="text-primary">mind</span>.ai
+                        <span className="text-2xl font-bold font-mono text-gray-900">
+                            <span className="text-green-700">Medi</span>Care
                         </span>
                     </Link>
 
@@ -32,31 +33,31 @@ const Navbar = () => {
                 </div>
 
                 {/* Desktop Navigation Links */}
-                <div className="hidden md:flex items-center gap-6">
+                <div className="hidden md:flex items-center gap-6 text-gray-900">
                     <Link
                         href="/"
-                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-[18px] hover:text-green-700"
                     >
                         <span>Home</span>
                     </Link>
 
                     <Link
                         href="/dashboard/history"
-                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-[18px] hover:text-green-700"
                     >
                         <span>History</span>
                     </Link>
 
                     <Link
                         href="/dashboard/billing"
-                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-[18px] hover:text-green-700"
                     >
-                        <span>Pricing</span>
+                        <span>Billing</span>
                     </Link>
 
                     <Link
-                        href="/profile"
-                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-lg"
+                        href="/dashboard"
+                        className="flex items-center gap-1.5 text-md hover:font-bold hover:cursor-pointer font-mono transition-all hover:text-[18px] hover:text-green-700"
                     >
                         <span>Profile</span>
                     </Link>
@@ -69,9 +70,9 @@ const Navbar = () => {
                             <Button
                                 asChild
                                 variant="outline"
-                                className="ml-2 border-primary hover:text-primary text-white bg-primary hover:bg-white"
+                                className="ml-2 border-green-700 text-white bg-green-700 hover:bg-green-800 hover:text-white"
                             >
-                                <Link href="/dashboard">Get Started</Link>
+                                <Link href="/dashboard">Dashboard</Link>
                             </Button>
                             
                             <UserButton/>
@@ -81,14 +82,14 @@ const Navbar = () => {
                             <SignInButton>
                                 <Button
                                     variant={"outline"}
-                                    className="border border-primary text-primary hover:text-white hover:bg-primary"
+                                    className="border border-green-700 text-green-700 hover:bg-gray-100 hover:text-green-700 cursor-pointer"
                                 >
                                     Sign In
                                 </Button>
                             </SignInButton>
 
                             <SignUpButton>
-                                <Button className="bg-primary text-white hover:bg-background hover:text-primary border border-primary">
+                                <Button className="bg-green-700 text-white hover:bg-green-800 hover:text-white border border-green-700 cursor-pointer">
                                     Sign Up
                                 </Button>
                             </SignUpButton>

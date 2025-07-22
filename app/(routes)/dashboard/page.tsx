@@ -1,5 +1,6 @@
 import AddNewSessionDialog from '@/components/AddNewSessionDialog';
 import DoctorsAgentList from '@/components/DoctorsAgentList';
+import Footer from '@/components/Footer';
 import HistoryList from '@/components/HistoryList';
 import Navbar from '@/components/NavBar';
 import { Button } from '@/components/ui/button';
@@ -13,7 +14,7 @@ const DashboardPage = () => {
     <main>
       <div className="flex items-center justify-between px-4">
         <div className="flex items-center justify-between">
-          <h2 className="ml-[-15px] font-bold text-2xl">My Dashboard</h2>
+          <h2 className="ml-[-15px] font-bold text-2xl text-green-700">My Dashboard</h2>
         </div>
         <div>
           <AddNewSessionDialog />

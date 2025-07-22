@@ -10,7 +10,7 @@ import {
 
 export function GridSection() {
   return (
-    <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem] mt-20">
+    <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem] mt-15">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
@@ -24,36 +24,53 @@ export function GridSection() {
     </BentoGrid>
   );
 }
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
+const Skeleton1 = () => (
+  <img 
+  src="/ai-health.png"
+  className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl"></img>
+);
+const Skeleton2 = () => (
+  <img 
+  src="/customer.jpg"
+  className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl"></img>
+);
+const Skeleton3 = () => (
+  <img 
+  src="/security.jpg"
+  className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl"></img>
+);
+const Skeleton4 = () => (
+  <img 
+  src="/friendly-conversation.jpg"
+  className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl"></img>
 );
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Skeleton />,
+    title: "Powered by Advanced Medical AI",
+    description: "Built on cutting-edge language models and trained using clinical data, MediCare delivers responses that are medically informed, context-aware, and easy to understand.",
+    header: <Skeleton1 />,
     className: "md:col-span-2",
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
-    header: <Skeleton />,
+    title: "Instant, 24/7 Access to Medical Insight",
+    description: "Skip the waiting room. Whether it’s midnight or midday, MediCare is ready to assist",
+    header: <Skeleton2 />,
     className: "md:col-span-1",
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
-    header: <Skeleton />,
+    title: "Secure & Confidential",
+    description: "Your health is personal. That’s why we use end-to-end encryption and adhere to strict privacy standards",
+    header: <Skeleton3 />,
     className: "md:col-span-1",
     icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "The Power of Communication",
+    title: "Natural Conversations, Real Support",
     description:
-      "Understand the impact of effective communication in our lives.",
-    header: <Skeleton />,
+      "Our agents are designed to speak like a human doctor—with empathy, clarity, and professionalism. No robotic replies. Just real help.",
+    header: <Skeleton4 />,
     className: "md:col-span-2",
     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
   },

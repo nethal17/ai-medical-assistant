@@ -190,7 +190,7 @@ const MedicalAgentPage = () => {
   };
 
   return (
-    <div className='p-10 border rounded-3xl mt-5 bg-secondary'> 
+    <div className='p-10 border rounded-3xl mt-10 bg-secondary'> 
       <div className='flex justify-between items-center'>
         <h2 className='p-1 px-2 border rounded-md flex gap-2 items-center'> <Circle className={`h-3 w-3 rounded-full ${callStarted? 'bg-green-600 text-green-600 animate-pulse' : 'bg-red-600 text-red-600'} `}/>{callStarted?'Connected...':'Not Connected' }</h2>
         <h2 className='font-bold text-xl text-gray-400'> 00:00 </h2>
@@ -200,15 +200,15 @@ const MedicalAgentPage = () => {
         <div className='flex items-center flex-col mt-10'>
           <Image 
             src={sessionDetail?.selectedDoctor?.image} alt={sessionDetail?.selectedDoctor?.specialist??''}
-            width={80}
-            height={80}
+            width={90}
+            height={90}
             className='h-[100px] w-[100px] object-cover rounded-full'
           />
-          <h2 className='text-lg mt-2'>{sessionDetail?.selectedDoctor?.specialist??''}</h2>
+          <h2 className='text-[22px] mt-2 text-green-700'>{sessionDetail?.selectedDoctor?.specialist??''}</h2>
           <p className='text-sm text-gray-500'>AI Medical Voice Agent</p>
 
-          <div className='mt-12 overflow-y-auto flex flex-col items-center px-10 md:px-28 lg:px-52 xl:px-72'>
-            {messages?.slice(-4).map((msg: message, index) =>(
+          <div className='fixed mt-12 overflow-y-auto flex flex-col items-center px-10 md:px-28 lg:px-52 xl:px-72'>
+            {messages?.slice(-1).map((msg: message, index) =>(
               <h2 className='text-gray-400 p-2' key={index}> {msg.role}: {msg.text} </h2>
             ))}
             {liveTranscript && liveTranscript?.length>0 &&<h2 className='text-lg'>{currentRole} : {liveTranscript}</h2>}
